@@ -6,8 +6,15 @@ import * as actions from '../actions/fuelSavingsActions';
 import FuelSavingsForm from '../components/FuelSavingsForm';
 
 export class FuelSavingsPage extends React.Component {
-  saveFuelSavings = () => {
-    this.props.actions.saveFuelSavings(this.props.fuelSavings);
+  constructor(props, context) {
+    super(props, context);
+
+    this.saveFuelSavingsThunk = this.saveFuelSavingsThunk.bind(this);
+    this.calculateFuelSavings = this.calculateFuelSavings.bind(this);
+  }
+
+  saveFuelSavingsThunk = () => {
+    this.props.actions.saveFuelSavingsThunk(this.props.fuelSavings);
   }
 
   calculateFuelSavings = e => {
@@ -17,7 +24,7 @@ export class FuelSavingsPage extends React.Component {
   render() {
     return (
       <FuelSavingsForm
-        onSaveClick={this.saveFuelSavings}
+        onSaveClick={this.saveFuelSavingsThunk}
         onChange={this.calculateFuelSavings}
         fuelSavings={this.props.fuelSavings}
       />

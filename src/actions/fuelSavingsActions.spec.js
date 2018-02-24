@@ -39,9 +39,9 @@ describe('Actions', () => {
     };
 
     // we expect this to return a function since it is a thunk
-    expect(typeof (ActionCreators.saveFuelSavings(appState))).toEqual('function');
+    expect(typeof (ActionCreators.saveFuelSavingsThunk(appState))).toEqual('function');
     // then we simulate calling it with dispatch as the store would do
-    ActionCreators.saveFuelSavings(appState)(dispatch);
+    ActionCreators.saveFuelSavingsThunk(appState)(dispatch);
     // finally assert that the dispatch was called with our expected action
     expect(dispatch).toBeCalledWith(expected);
   });

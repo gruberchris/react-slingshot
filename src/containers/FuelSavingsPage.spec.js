@@ -9,7 +9,7 @@ import initialState from "../reducers/initialState";
 
 describe("<FuelSavingsPage />", () => {
   const actions = {
-    saveFuelSavings: jest.fn(),
+    saveFuelSavingsThunk: jest.fn(),
     calculateFuelSavings: jest.fn()
   };
 
@@ -35,7 +35,7 @@ describe("<FuelSavingsPage />", () => {
     const save = wrapper.find('input[type="submit"]');
     save.simulate("click");
 
-    expect(actions.saveFuelSavings).toHaveBeenCalledWith(
+    expect(actions.saveFuelSavingsThunk).toHaveBeenCalledWith(
       initialState.fuelSavings
     );
   });
