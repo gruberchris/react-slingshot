@@ -1,3 +1,7 @@
+react-starman contributors
+====================================================
+* Chris Gruber ([gruberchris](https://github.com/gruberchris))
+
 react-slingshot contributors (sorted alphabetically)
 ====================================================
 * Atif Afzal ([atfzl](https://github.com/atfzl))
