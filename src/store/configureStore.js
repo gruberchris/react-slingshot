@@ -1,11 +1,18 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { routerMiddleware } from 'react-router-redux';
+import 'babel-polyfill';
 import rootReducer from '../reducers';
+import sagas from '../sagas';
+
 export const history = createHistory();
+
+const sagaMiddleware = createSagaMiddleware();
+
 function configureStoreProd(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
   const middlewares = [
@@ -14,8 +21,11 @@ function configureStoreProd(initialState) {
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
     thunk,
+    sagaMiddleware,
     reactRouterMiddleware,
   ];
+
+  sagaMiddleware.run(sagas);
 
   return createStore(rootReducer, initialState, compose(
     applyMiddleware(...middlewares)
@@ -34,6 +44,7 @@ function configureStoreDev(initialState) {
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
     thunk,
+    sagaMiddleware,
     reactRouterMiddleware,
   ];
 
@@ -50,6 +61,8 @@ function configureStoreDev(initialState) {
       store.replaceReducer(nextReducer);
     });
   }
+
+  sagaMiddleware.run(sagas);
 
   return store;
 }

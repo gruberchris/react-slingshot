@@ -24,3 +24,30 @@ export function calculateFuelSavings(settings, fieldName, value) {
     value
   };
 }
+
+export function saveFuelSavings(settings) {
+  return {
+    type: types.SAVE_FUEL_SAVINGS_STARTED,
+    payload: {
+      settings
+    }
+  }
+}
+
+export function saveFuelSavingsCompleted(dateModified) {
+  return {
+    type: types.SAVE_FUEL_SAVINGS_COMPLETED,
+    payload: {
+      dateModified
+    }
+  }
+}
+
+export function saveFuelSavingsError(error) {
+  return {
+    type: types.SAVE_FUEL_SAVINGS_ERROR,
+    payload: {
+      error
+    }
+  }
+}

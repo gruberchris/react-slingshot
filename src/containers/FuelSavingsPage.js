@@ -9,12 +9,12 @@ export class FuelSavingsPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.saveFuelSavingsThunk = this.saveFuelSavingsThunk.bind(this);
+    this.saveFuelSavings = this.saveFuelSavings.bind(this);
     this.calculateFuelSavings = this.calculateFuelSavings.bind(this);
   }
 
-  saveFuelSavingsThunk = () => {
-    this.props.actions.saveFuelSavingsThunk(this.props.fuelSavings);
+  saveFuelSavings = () => {
+    this.props.actions.saveFuelSavings(this.props.fuelSavings);
   }
 
   calculateFuelSavings = e => {
@@ -24,7 +24,7 @@ export class FuelSavingsPage extends React.Component {
   render() {
     return (
       <FuelSavingsForm
-        onSaveClick={this.saveFuelSavingsThunk}
+        onSaveClick={this.saveFuelSavings}
         onChange={this.calculateFuelSavings}
         fuelSavings={this.props.fuelSavings}
       />
